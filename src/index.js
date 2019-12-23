@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import style from './index.css';
 import duck from '../static/gltf/Duck/Duck.gltf';
+import FlameLight from './flame-light';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -14,14 +14,16 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer();
 const loader = new GLTFLoader();
 
+const flame1 = FlameLight();
+flame1.position.set(30, -20, 10);
+scene.add(flame1);
+const flame2 = FlameLight();
+flame2.position.set(-30, -20, 10);
+scene.add(flame2);
+
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 camera.position.z = 5;
-
-const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-scene.add( light );
-
-const controls = new OrbitControls(camera, renderer.domElement);
 
 // Load the model
 loader.load(duck, 
@@ -31,7 +33,13 @@ loader.load(duck,
 		scene.add( gltf.scene );
     (function animate() {
       requestAnimationFrame(animate);
-      controls.update();
+      gltf.scene.rotation.y += 0.01;
+      if (Math.random() < 0.2) {
+        flame1.flicker();
+      }
+      if (Math.random() < 0.2) {
+        flame2.flicker();
+      }
       renderer.render(scene, camera);
     })();
 	},
@@ -46,3 +54,9 @@ loader.load(duck,
 		console.log( 'An error happened' );
 	}
 );
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( window.innerWidth, window.innerHeight );
+});
