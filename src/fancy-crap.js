@@ -35,8 +35,9 @@ loader.load(skull,
   // onLoad callback
   gltf => {
     gltf.scene.rotation.x = 0.6;
+    gltf.scene.rotation.y = Math.PI;
 		scene.add(gltf.scene);
-    container.removeChild(document.getElementById('ophira-logo'));
+    document.body.className = 'loaded';
 
     (function animate() {
       requestAnimationFrame(animate);

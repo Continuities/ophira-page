@@ -12,12 +12,24 @@ html, body {
   height: 100vh;
 }
 
+#canvas > canvas {
+  z-index: 1;
+  position: relative;
+  opacity: 0;
+  transition: opacity 600ms;
+}
+
+.loaded #canvas > canvas {
+  opacity: 1;
+}
+
 #ophira-logo {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 50%;
+  
 }
 
 #content {

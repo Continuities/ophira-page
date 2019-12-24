@@ -1,9 +1,10 @@
-#arrow{
+#arrow {
   position: absolute;
   cursor: pointer;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -200%);
+  z-index: 2;
 }
 #arrow > span{
   display: block;
