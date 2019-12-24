@@ -23,7 +23,7 @@ html, body {
 #content {
   box-sizing: border-box;
   line-height: 1.5;
-  height: 100vh;
+  min-height: 100vh;
   padding: 60px;
   font-size: 28px;
 }
