@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -14,6 +15,7 @@ module.exports = {
       filename: '[name].bundle.css',
       chunkFilename: '[id].css',
     }),
+    new FaviconsWebpackPlugin('./static/ophira.svg')
   ],
   module: {
     rules: [{
