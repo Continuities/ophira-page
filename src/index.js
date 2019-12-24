@@ -9,4 +9,14 @@ import arrow from './arrow.css';
 const container = document.getElementById('canvas');
 container.style.height = `${window.innerHeight}px`;
 
-const scroll = new SmoothScroll('a[href*="#"]');
+const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 600,
+  speedAsDuration: true,
+  easing: 'easeInOutCubic'
+});
+
+window.addEventListener('scroll', () => {
+  const scrollPercent = Math.min(1, window.scrollY / (window.innerHeight * 0.8));
+  document.getElementById('arrow').style.opacity = 1 - scrollPercent;
+  document.getElementById('content').style.opacity = scrollPercent;
+});

@@ -40,6 +40,9 @@ loader.load(skull,
 
     (function animate() {
       requestAnimationFrame(animate);
+      if (window.scrollY >= window.innerHeight) {
+        return;
+      }
       gltf.scene.rotation.y += 0.01;
       if (Math.random() < 0.2) {
         flame1.flicker();
