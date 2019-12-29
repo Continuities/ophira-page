@@ -6,6 +6,17 @@ html, body {
   color: white;
 }
 
+body::before, #content::before {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  background: #111111;
+}
+
 #canvas {
   position: relative;
   width: 100vw;
@@ -15,12 +26,8 @@ html, body {
 #canvas > canvas {
   z-index: 1;
   position: relative;
-  opacity: 0;
   transition: opacity 600ms;
-}
-
-.loaded #canvas > canvas {
-  opacity: 1;
+  opacity: 0;
 }
 
 #ophira-logo {
@@ -29,9 +36,20 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 50%;
+  transition: opacity 600ms;
+  opacity: 1;
+}
+
+.loaded #ophira-logo {
+  opacity: 0;
+}
+
+.loaded #canvas > canvas {
+  opacity: 1;
 }
 
 #content {
+  position: relative;
   box-sizing: border-box;
   line-height: 1.5;
   min-height: 100vh;
@@ -42,4 +60,8 @@ html, body {
 #canvas, #content {
   max-width: 800px;
   margin: 0 auto;
+}
+
+#content-text {
+  position: relative;
 }
