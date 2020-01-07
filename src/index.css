@@ -2,8 +2,8 @@ html, body {
   padding: 0;
   margin: 0;
   line-height: 0;
-  background: black;
-  color: white;
+  background: #060606;
+  color: #eeeeee;
 }
 
 body::before, #content::before {
@@ -15,6 +15,20 @@ body::before, #content::before {
   right: 0;
   bottom: 0;
   background: #111111;
+}
+
+#content::after {
+  display:block;
+  position:absolute;
+  content: '';
+  background-color: #161616;
+  width: 100vw;
+  height: 100vw;
+  transform: translate(0, 90%) rotate(45deg);
+  /* max-width: 800px;
+  max-height: 800px; */
+  left: 0;
+  bottom: 0;
 }
 
 #canvas {
@@ -55,13 +69,17 @@ body::before, #content::before {
   min-height: 100vh;
   padding: 60px;
   font-size: 28px;
+  overflow: hidden;
 }
 
-#canvas, #content {
+#canvas {
   max-width: 800px;
   margin: 0 auto;
 }
 
 #content-text {
+  max-width: 680px;
+  margin: 0 auto;
   position: relative;
+  z-index: 1;
 }

@@ -4,7 +4,7 @@
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import skull from '../static/gltf/Skull/scene.gltf';
+import model from '../static/gltf/3D OPHIRA LOGO 2020 tester01.glb';
 import FlameLight from './flame-light';
 
 const container = document.getElementById('canvas');
@@ -13,7 +13,7 @@ const camera = new THREE.PerspectiveCamera(
   75, 
   container.clientWidth / container.clientHeight, 
   0.1, 
-  1000
+  2000
 );
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 const loader = new GLTFLoader();
@@ -27,15 +27,15 @@ scene.add(flame2);
 
 renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
-camera.position.z = 400;
+camera.position.z = 1200;
 
 // Load the model
-loader.load(skull, 
+loader.load(model, 
 
   // onLoad callback
   gltf => {
-    gltf.scene.rotation.x = 0.6;
-    gltf.scene.rotation.y = Math.PI;
+    gltf.scene.rotation.x = Math.PI/4;
+    gltf.scene.rotation.z = Math.PI/2;
 		scene.add(gltf.scene);
     document.body.className = 'loaded';
 

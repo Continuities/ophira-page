@@ -21,11 +21,11 @@ module.exports = {
     rules: [{
       test: /\.css$/i,
       use: [MiniCssExtractPlugin.loader, 'css-loader'],
-    },{
+    }, {
       test: /\.gltf$/i,
       use: ['gltf-webpack-loader']
-    }, {
-      test: /\.(bin|png|gif|jpg)$/i,
+    },{
+      test: /\.(bin|png|gif|jpg|glb)$/i,
       use: ['file-loader']
     }, {
       test: /\.svg$/i,
