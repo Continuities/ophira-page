@@ -25,8 +25,6 @@ body::before, #content::before {
   width: 100vw;
   height: 100vw;
   transform: translate(0, 90%) rotate(45deg);
-  /* max-width: 800px;
-  max-height: 800px; */
   left: 0;
   bottom: 0;
 }
@@ -78,8 +76,30 @@ body::before, #content::before {
 }
 
 #content-text {
-  max-width: 680px;
-  margin: 0 auto;
   position: relative;
   z-index: 1;
+}
+
+#social {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  margin-top: 40px;
+}
+
+.social-link {
+  display: block;
+  text-decoration: none;
+  outline: none;
+  width: 40px;
+  margin-right: 20px;
+}
+
+#social svg {
+  fill: #eeeeee;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 680px;
 }
