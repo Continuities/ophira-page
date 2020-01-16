@@ -4,6 +4,7 @@ html, body {
   line-height: 0;
   background: #060606;
   color: #eeeeee;
+  font-family: 'IM Fell Great Primer SC', serif;
 }
 
 body::before, #content::before {
@@ -102,4 +103,23 @@ body::before, #content::before {
 .content {
   margin: 0 auto;
   max-width: 680px;
+}
+
+#cta {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  margin-top: 40px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: url('../static/flame.gif');
+  background-size: 400%;
+  background-position: bottom;
+  color: transparent;
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
 }
