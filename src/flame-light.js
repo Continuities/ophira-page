@@ -14,11 +14,17 @@ const FlameLight = (debug) => {
   if (debug) {
     group.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0040 })));
   }
+
+  const flicker = () => {
+    orange.intensity = random(0.2, 0.5);
+    red.intensity = random(0.2, 0.5);
+  }
   
-  group.flicker = () => {
-    orange.intensity = random(0.7, 1);
-    red.intensity = random(0.7, 1);
-  };
+  group.frame = () => {
+    if (Math.random() < 0.2) {
+      flicker();
+    }
+  }
 
   return group;
 };

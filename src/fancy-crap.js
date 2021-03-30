@@ -4,8 +4,10 @@
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import model from '../static/gltf/3D OPHIRA LOGO 2020 tester01.glb';
+import model from '../static/gltf/ophira.glb';
 import FlameLight from './flame-light';
+import LightningLight from './lightning-light';
+import { isStormy } from './weather';
 
 const container = document.getElementById('canvas');
 const scene = new THREE.Scene();
@@ -18,24 +20,44 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer({ alpha: true });
 const loader = new GLTFLoader();
 
-const flame1 = FlameLight();
-flame1.position.set(150, -100, 100);
-scene.add(flame1);
-const flame2 = FlameLight();
-flame2.position.set(-150, -100, 100);
-scene.add(flame2);
+const moon = new THREE.PointLight(0x081935, 1, 0);
+moon.position.set(0, 20, 3);
+scene.add(moon);
+
+const forceLightning = false;
+
+let light1, light2;
+(async () => {
+  const lightning = forceLightning || await isStormy();
+  if (lightning) {
+    light1 = LightningLight();
+    light1.position.set(10, 20, 3);
+    scene.add(light1);
+    light2 = LightningLight(0xffeeff);
+    light2.position.set(-10, 20, 3);
+    scene.add(light2);
+  }
+  else {
+    light1 = FlameLight();
+    light1.position.set(10, -20, 3);
+    scene.add(light1);
+    light2 = FlameLight();
+    light2.position.set(-10, -20, 3);
+    scene.add(light2);
+  }
+})();
 
 renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
-camera.position.z = 1200;
+camera.position.z = 1;
+camera.position.y = -0.15;
 
 // Load the model
 loader.load(model, 
 
   // onLoad callback
   gltf => {
-    gltf.scene.rotation.x = Math.PI/4;
-    gltf.scene.rotation.z = Math.PI/2;
+    gltf.scene.rotation.z = Math.PI;
 		scene.add(gltf.scene);
     document.body.className = 'loaded';
 
@@ -45,12 +67,8 @@ loader.load(model,
         return;
       }
       gltf.scene.rotation.y += 0.01;
-      if (Math.random() < 0.2) {
-        flame1.flicker();
-      }
-      if (Math.random() < 0.2) {
-        flame2.flicker();
-      }
+      light1 && light1.frame();
+      light2 && light2.frame();
       renderer.render(scene, camera);
     })();
 	}
