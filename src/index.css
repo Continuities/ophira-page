@@ -82,8 +82,7 @@ body::before, #content::before {
 }
 
 #social {
-  position: relative;
-  z-index: 1;
+  
   display: flex;
   margin-top: 40px;
 }
@@ -101,8 +100,15 @@ body::before, #content::before {
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   margin: 0 auto;
   max-width: 680px;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 80px;
 }
 
 #cta {

@@ -22,6 +22,7 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "favicons": "^6.2.1",
     "smooth-scroll": "^16.1.0",
     "three": "^0.126.1"
   },
